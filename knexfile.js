@@ -6,7 +6,7 @@ module.exports = {
   development: {
     client: 'postgresql',
     connection: {
-      database: process.env.DATABASE_URL,
+      database: process.env.DATABASE_NAME,
       user: process.env.DATABASE_USER
     },
     migrations: {

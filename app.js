@@ -6,8 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var bcrypt = require('bcrypt');
 var cookieSession = require('cookie-session');
+
+
+//SETUP OUR ROUTES
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var auth = require('./routes/auth');
 
 var app = express();
 
@@ -26,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -36,7 +41,7 @@ app.use(function(req, res, next) {
 
 app.use(cookieSession({
   name: 'session',
-  keys: ['key1', 'key2']
+  keys: [process.env.SECRET, 'key2']
 }))
 
 // error handlers
